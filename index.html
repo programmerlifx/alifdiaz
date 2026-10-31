@@ -2,15 +2,15 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>alifdiaz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --cobalt:#2540D9; --on-cobalt:#F4F6FF;
-  --paper:#F3F5FA; --ink:#14172B; --muted:#565C7C; --line:#D3D9EA; --hover:#E6EAF7;
+  --cobalt:#2540D9; --on-cobalt:#F4F6FF; --accent:#FFD84D;
+  --paper:#F3F5FA; --ink:#14172B; --muted:#565C7C; --line:#D3D9EA; --hover:#E6EAF7; --card:#FFFFFF;
   --sans:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
   --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
   box-sizing:border-box;
@@ -18,35 +18,56 @@
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--paper:#0F1224;--ink:#ECEFFB;--muted:#9AA1C4;--line:#262B4A;--hover:#181C38;color-scheme:dark}
+  :root:not([data-theme="light"]){--paper:#0F1224;--ink:#ECEFFB;--muted:#9AA1C4;--line:#262B4A;--hover:#181C38;--card:#171B35;color-scheme:dark}
 }
-:root[data-theme="dark"]{--paper:#0F1224;--ink:#ECEFFB;--muted:#9AA1C4;--line:#262B4A;--hover:#181C38;color-scheme:dark}
+:root[data-theme="dark"]{--paper:#0F1224;--ink:#ECEFFB;--muted:#9AA1C4;--line:#262B4A;--hover:#181C38;--card:#171B35;color-scheme:dark}
 *,*::before,*::after{box-sizing:inherit}
 html{background:var(--cobalt);scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:1.125rem;line-height:1.65}
 a{color:inherit}
-:focus-visible{outline:3px solid #FFD84D;outline-offset:3px}
+*,*::before,*::after{outline:none!important;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+:focus,:focus-visible{outline:none}
 
 /* Hero */
 .hero{background:var(--cobalt);color:var(--on-cobalt);min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1.25rem,4vw,3rem);overflow:hidden}
-.hero p{font-family:var(--sans);font-size:clamp(1.1rem,2.2vw,1.6rem);font-weight:500;line-height:1.3;max-width:22ch;margin:0}
-.name{margin:0;font-family:var(--sans);font-size:clamp(3rem,17.5vw,24rem);line-height:.8;letter-spacing:-.045em;font-stretch:80%;font-weight:200;white-space:nowrap;padding-bottom:.08em;user-select:none}
-.name span{display:inline-block;font-variation-settings:"wght" 200}
-.hint{font-size:.9rem!important;opacity:.7;margin-top:1rem!important;max-width:none!important;font-weight:400!important}
-
+.topline{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.hero p{font-family:var(--sans);font-size:clamp(1.1rem,2.2vw,1.6rem);font-weight:500;line-height:1.3;max-width:24ch;margin:0}
+.greet{font-size:clamp(1rem,1.8vw,1.25rem)!important;opacity:.85;font-weight:400!important}
 .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:1.5rem 0;min-height:9rem}
 .art{width:min(100%,46rem);height:auto;color:var(--on-cobalt);overflow:visible}
-.art *{vector-effect:non-scaling-stroke}
 .bob{animation:bob 7s ease-in-out infinite}
 .bob.b2{animation-duration:9s;animation-delay:-3s}
 .bob.b3{animation-duration:8s;animation-delay:-5s}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.name{margin:0;font-family:var(--sans);font-size:clamp(3rem,17.5vw,24rem);line-height:.8;letter-spacing:-.045em;font-stretch:80%;font-weight:200;white-space:nowrap;padding-bottom:.08em;user-select:none}
+.name span{display:inline-block;font-variation-settings:"wght" 200}
+.hint{font-size:.9rem!important;opacity:.7;margin-top:1rem!important;max-width:none!important;font-weight:400!important}
+
+/* Info strip: jam + waktu */
+.strip{background:var(--paper);padding:clamp(2rem,5vw,3.5rem) clamp(1.25rem,4vw,3rem) 0}
+.strip-inner{max-width:68rem;margin:0 auto;display:grid;gap:1.25rem;grid-template-columns:1fr}
+@media (min-width:44rem){.strip-inner{grid-template-columns:1.2fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.5rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.card-label{font-family:var(--sans);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .35rem}
+.digital{font-family:var(--sans);font-weight:600;font-size:clamp(2.2rem,6vw,3.4rem);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;margin:0}
+.digital small{font-size:.4em;font-weight:500;color:var(--muted);margin-left:.25rem}
+.date{font-family:var(--sans);color:var(--muted);margin:.5rem 0 0;font-size:1rem}
+.clock{width:132px;height:132px;flex:none}
+.clock .face{fill:none;stroke:var(--line);stroke-width:2}
+.clock .tick{stroke:var(--muted);stroke-width:2;stroke-linecap:round}
+.clock .hand-h{stroke:var(--ink);stroke-width:5;stroke-linecap:round}
+.clock .hand-m{stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.clock .hand-s{stroke:var(--cobalt);stroke-width:1.5;stroke-linecap:round}
+.clock .pin{fill:var(--cobalt)}
+.period{display:flex;align-items:center;gap:1rem}
+.period svg{width:56px;height:56px;flex:none;color:var(--cobalt)}
+.period-name{font-family:var(--sans);font-weight:600;font-size:1.5rem;letter-spacing:-.02em;margin:0;line-height:1.1}
+.period-desc{color:var(--muted);margin:.35rem 0 0;font-size:1rem;line-height:1.45}
 
 /* Sections */
 main{padding:0 clamp(1.25rem,4vw,3rem)}
 section{max-width:68rem;margin:0 auto;padding:clamp(3.5rem,9vw,7rem) 0}
 h2{font-family:var(--sans);font-weight:700;font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-.02em;line-height:1.1;margin:0 0 2rem}
-
 .work{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .work li{border-bottom:1px solid var(--line)}
 .work a{display:grid;grid-template-columns:1fr auto;gap:.25rem 2rem;padding:1.5rem .75rem;text-decoration:none;transition:background .2s}
@@ -54,8 +75,7 @@ h2{font-family:var(--sans);font-weight:700;font-size:clamp(1.6rem,3.5vw,2.4rem);
 .work h3{font-family:var(--sans);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.4rem);letter-spacing:-.025em;line-height:1.1;margin:0}
 .work .yr{font-family:var(--sans);color:var(--muted);font-size:1rem;align-self:start;padding-top:.5rem}
 .work p{grid-column:1;margin:.25rem 0 0;max-width:52ch;color:var(--muted);font-size:1.05rem}
-.work .stack{grid-column:1;font-family:var(--sans);font-size:.95rem;color:var(--ink);margin-top:.35rem}
-
+.work .stack{grid-column:1;font-family:var(--sans);font-size:.95rem;margin-top:.35rem}
 .about{display:grid;gap:2rem;grid-template-columns:1fr}
 .about p{margin:0 0 1.1rem;max-width:62ch}
 @media (min-width:56rem){.about{grid-template-columns:1fr 2fr;gap:4rem}.about h2{margin:0}}
@@ -64,7 +84,7 @@ h2{font-family:var(--sans);font-weight:700;font-size:clamp(1.6rem,3.5vw,2.4rem);
 footer{background:var(--cobalt);color:var(--on-cobalt);padding:clamp(3rem,8vw,6rem) clamp(1.25rem,4vw,3rem)}
 footer div{max-width:68rem;margin:0 auto}
 footer p{font-family:var(--sans);margin:0 0 .5rem;font-size:1.1rem}
-footer a.mail{font-family:var(--sans);font-weight:700;font-size:clamp(1.8rem,6.5vw,4.5rem);letter-spacing:-.03em;line-height:1.05;text-decoration-thickness:.06em;text-underline-offset:.12em;word-break:break-word}
+footer a.mail{font-family:var(--sans);font-weight:700;font-size:clamp(1.6rem,5.5vw,4.5rem);letter-spacing:-.03em;line-height:1.05;text-decoration-thickness:.06em;text-underline-offset:.12em;word-break:break-word}
 footer small{display:block;margin-top:3rem;opacity:.7;font-family:var(--sans)}
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.work a{transition:none}.bob{animation:none}}
@@ -72,7 +92,9 @@ footer small{display:block;margin-top:3rem;opacity:.7;font-family:var(--sans)}
 </head>
 <body>
 <header class="hero">
-  <p>Membuat web app, aplikasi, dan game yang bisa langsung dipakai.</p>
+  <div class="topline">
+    <p class="greet" id="greet">Selamat datang</p>
+  </div>
   <div class="stage" aria-hidden="true">
     <svg class="art" viewBox="0 0 600 190" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <g transform="translate(10,20)"><g class="bob">
@@ -122,11 +144,41 @@ footer small{display:block;margin-top:3rem;opacity:.7;font-family:var(--sans)}
   </div>
 </header>
 
+<div class="strip">
+  <div class="strip-inner">
+    <div class="card">
+      <svg class="clock" viewBox="0 0 132 132" aria-label="Jam analog" role="img">
+        <circle class="face" cx="66" cy="66" r="63"/>
+        <g id="ticks"></g>
+        <line class="hand-h" id="hH" x1="66" y1="66" x2="66" y2="40"/>
+        <line class="hand-m" id="hM" x1="66" y1="66" x2="66" y2="26"/>
+        <line class="hand-s" id="hS" x1="66" y1="78" x2="66" y2="16"/>
+        <circle class="pin" cx="66" cy="66" r="3.5"/>
+      </svg>
+      <div>
+        <p class="card-label">Waktu sekarang</p>
+        <p class="digital" id="digital">--:--<small id="secs">:--</small></p>
+        <p class="date" id="date"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="period">
+        <svg id="periodIcon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"></svg>
+        <div>
+          <p class="card-label">Sekarang</p>
+          <p class="period-name" id="periodName"></p>
+          <p class="period-desc" id="periodDesc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <main>
   <section id="karya" aria-labelledby="h-karya">
     <h2 id="h-karya">Karya</h2>
     <ul class="work">
-      <li><a href="#karya" target="_blank" rel="noopener">
+      <li><a href="#karya">
         <h3>LIFX Projects</h3><span class="yr">2026</span>
         <p>Web app dengan Chat Global, profil pengguna, dan panel admin. Data tersimpan real time.</p>
         <span class="stack">HTML, JavaScript, Firebase Realtime Database</span>
@@ -156,42 +208,86 @@ footer small{display:block;margin-top:3rem;opacity:.7;font-family:var(--sans)}
 <footer id="kontak">
   <div>
     <p>Ada proyek atau ide?</p>
-    <a class="mail" href="mailto: diazalif807@gmail.com">diazalif807@gmail.com</a>
+    <a class="mail" href="mailto:diazalif807@gmail.com">diazalif807@gmail.com</a>
     <small>© 2026 alifdiaz</small>
   </div>
 </footer>
 
 <script>
 (function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NS='http://www.w3.org/2000/svg';
+
+  /* Nama besar: huruf menebal saat dibuka, lalu bereaksi ke kursor */
   var el=document.getElementById('name'),txt='alifdiaz',spans=[],MIN=200,MAX=800;
   txt.split('').forEach(function(c){var s=document.createElement('span');s.textContent=c;s.setAttribute('aria-hidden','true');el.appendChild(s);spans.push(s)});
   function set(i,w){spans[i].style.fontVariationSettings='"wght" '+Math.round(w)}
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){var art=document.querySelector('.art');if(art&&art.pauseAnimations)art.pauseAnimations()}
-  if(reduce){spans.forEach(function(_,i){set(i,700)});return}
-  // Satu momen saat halaman dibuka: huruf menebal berurutan.
-  var start=performance.now(),done=false;
-  function intro(t){
-    var e=t-start,busy=false;
-    spans.forEach(function(_,i){
-      var p=Math.min(1,Math.max(0,(e-i*90)/700));
-      p=1-Math.pow(1-p,3);
-      set(i,MIN+(500-MIN)*p);
-      if(p<1)busy=true;
+  if(reduce){spans.forEach(function(_,i){set(i,700)})}
+  else{
+    var start=performance.now(),done=false;
+    (function intro(t){
+      var e=t-start,busy=false;
+      spans.forEach(function(_,i){
+        var p=Math.min(1,Math.max(0,(e-i*90)/700));p=1-Math.pow(1-p,3);
+        set(i,MIN+(500-MIN)*p);if(p<1)busy=true;
+      });
+      if(busy&&!done)requestAnimationFrame(intro);else done=true;
+    })(start);
+    var hero=document.querySelector('.hero');
+    hero.addEventListener('pointermove',function(e){
+      done=true;
+      spans.forEach(function(s,i){
+        var r=s.getBoundingClientRect(),d=Math.abs(e.clientX-(r.left+r.width/2)),k=Math.max(0,1-d/(r.width*2.6));
+        set(i,500+(MAX-500)*k-(500-MIN)*(1-k)*0.35);
+      });
     });
-    if(busy&&!done)requestAnimationFrame(intro);else done=true;
+    hero.addEventListener('pointerleave',function(){spans.forEach(function(_,i){set(i,500)})});
   }
-  requestAnimationFrame(intro);
-  function move(x){
-    done=true;
-    spans.forEach(function(s,i){
-      var r=s.getBoundingClientRect(),d=Math.abs(x-(r.left+r.width/2)),k=Math.max(0,1-d/(r.width*2.6));
-      set(i,500+(MAX-500)*k-(500-MIN)*(1-k)*0.35);
-    });
+
+  /* Jam analog: tanda jam */
+  var ticks=document.getElementById('ticks');
+  for(var i=0;i<12;i++){
+    var a=i*30*Math.PI/180,long=i%3===0;
+    var l=document.createElementNS(NS,'line');
+    l.setAttribute('class','tick');
+    l.setAttribute('x1',66+Math.sin(a)*(long?52:55));l.setAttribute('y1',66-Math.cos(a)*(long?52:55));
+    l.setAttribute('x2',66+Math.sin(a)*60);l.setAttribute('y2',66-Math.cos(a)*60);
+    ticks.appendChild(l);
   }
-  var hero=document.querySelector('.hero');
-  hero.addEventListener('pointermove',function(e){move(e.clientX)});
-  hero.addEventListener('pointerleave',function(){spans.forEach(function(_,i){set(i,500)})});
+  var hH=document.getElementById('hH'),hM=document.getElementById('hM'),hS=document.getElementById('hS');
+  var dig=document.getElementById('digital'),secEl=document.getElementById('secs'),dateEl=document.getElementById('date');
+  var greet=document.getElementById('greet'),pName=document.getElementById('periodName'),pDesc=document.getElementById('periodDesc'),pIcon=document.getElementById('periodIcon');
+  var pad=function(n){return (n<10?'0':'')+n};
+  var lastKey='';
+
+  var periods=[
+    {from:4,name:'Pagi',g:'Selamat pagi',d:'Hari baru dimulai. Waktu yang enak untuk ngoding sebelum banyak gangguan.',icon:'<circle cx="28" cy="30" r="10"/><path d="M28 10v5M28 45v5M8 30h5M43 30h5M14 16l3.5 3.5M38.5 40.5l3.5 3.5M14 44l3.5-3.5M38.5 19.5l3.5-3.5"/><path d="M6 50h44"/>'},
+    {from:10,name:'Siang',g:'Selamat siang',d:'Matahari di atas kepala. Waktunya cek progres dan rapikan tugas.',icon:'<circle cx="28" cy="28" r="11"/><path d="M28 6v6M28 44v6M6 28h6M44 28h6M12 12l4 4M40 40l4 4M12 44l4-4M40 16l4-4"/>'},
+    {from:15,name:'Sore',g:'Selamat sore',d:'Langit mulai oranye. Cocok untuk merapikan kode dan mencoba fitur baru.',icon:'<path d="M6 40h44"/><path d="M14 40a14 14 0 0 1 28 0"/><path d="M28 10v6M10 20l4 4M46 20l-4 4"/>'},
+    {from:18,name:'Malam',g:'Selamat malam',d:'Saat paling tenang untuk fokus pada game dan proyek yang panjang.',icon:'<path d="M40 34A16 16 0 0 1 22 14a16 16 0 1 0 18 20z"/><circle cx="42" cy="12" r="1.5" fill="currentColor"/><circle cx="10" cy="44" r="1.2" fill="currentColor"/>'}
+  ];
+  function periodFor(h){var p=periods[0];periods.forEach(function(x){if(h>=x.from)p=x});return p}
+
+  function tick(){
+    var now=new Date(),h=now.getHours(),m=now.getMinutes(),s=now.getSeconds(),ms=now.getMilliseconds();
+    var sec=s+ms/1000;
+    hH.setAttribute('transform','rotate('+((h%12)*30+m*0.5)+' 66 66)');
+    hM.setAttribute('transform','rotate('+(m*6+sec*0.1)+' 66 66)');
+    hS.setAttribute('transform','rotate('+(sec*6)+' 66 66)');
+    dig.firstChild.nodeValue=pad(h)+':'+pad(m);
+    secEl.textContent=':'+pad(s);
+    var key=now.toDateString()+h;
+    if(key!==lastKey){
+      lastKey=key;
+      dateEl.textContent=now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+      var p=periodFor(h);
+      greet.textContent=p.g+', selamat datang di portofolio saya.';
+      pName.textContent=p.name;pDesc.textContent=p.d;pIcon.innerHTML=p.icon;
+    }
+  }
+  tick();
+  if(reduce){setInterval(tick,1000)}
+  else{(function loop(){tick();requestAnimationFrame(loop)})()}
 })();
 </script>
 </body>
